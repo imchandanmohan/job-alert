@@ -1,5 +1,6 @@
 from scrapers.servicenow import fetch_jobs as fetch_servicenow_jobs
 from supabase_utils import fetch_existing_job_ids, insert_new_jobs
+from email_utils import send_job_alert_email
 
 SCRAPERS = [
     fetch_servicenow_jobs,
@@ -25,6 +26,7 @@ def main():
         if new_jobs:
             print(f"🆕 {len(new_jobs)} new job(s) for {company}")
             insert_new_jobs(new_jobs, source, company)
+            send_job_alert_email(new_jobs, company)
         else:
             print(f"✅ No new jobs for {company}")
 
