@@ -3,13 +3,12 @@ from supabase_utils import fetch_existing_job_ids, insert_new_jobs
 from email_utils import send_job_alert_email
 from scrapers.adobe import fetch_jobs as fetch_adobe_jobs
 from scrapers.apple import fetch_jobs as fetch_apple_jobs
+from scrapers.nvidia import fetch_jobs as fetch_nvidia_jobs
 SCRAPERS = [
     fetch_servicenow_jobs,
     fetch_adobe_jobs,
     fetch_apple_jobs,
-    # Add more scrapers here like:
-    # fetch_greenhouse_jobs,
-    # fetch_lever_jobs,
+    fetch_nvidia_jobs
 ]
 
 def main():
