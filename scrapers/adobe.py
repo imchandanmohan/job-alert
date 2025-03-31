@@ -25,11 +25,8 @@ def fetch_jobs():
         def handle_response(response):
             nonlocal job_response_json
             if "/widgets" in response.url and response.request.method == "POST":
-                print(f"📦 Intercepted /widgets: {response.status} - {response.url}")
                 try:
                     json_data = response.json()
-                    print(f"🔍 Raw JSON keys: {list(json_data.keys())}")
-
                     # ✅ Look specifically for eagerLoadRefineSearch.jobs
                     if "eagerLoadRefineSearch" in json_data:
                         job_data = json_data["eagerLoadRefineSearch"]["data"]
