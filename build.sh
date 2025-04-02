@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Install Python dependencies
+# Install Python deps
 pip install -r requirements.txt
 
-# Install Playwright browsers
-playwright install --with-deps
+# Install Playwright browser binaries (no root access needed)
+playwright install chromium
