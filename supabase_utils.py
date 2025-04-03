@@ -38,3 +38,14 @@ def insert_new_jobs(jobs: list, source: str, company: str):
         
         # Insert the job into the database
         supabase.table("jobs").insert(job).execute()
+        
+def log_error(error_message: str, scraper_name: str):
+    """Log errors into the database."""
+    try:
+        supabase.table("job_scraper_errors").insert({
+            "scraper_name": scraper_name,
+            "error_message": error_message
+        }).execute()
+        print(f"🔴 Error logged for scraper: {scraper_name}")
+    except Exception as e:
+        print(f"❌ Failed to log error: {str(e)}")

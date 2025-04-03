@@ -19,7 +19,7 @@ def send_job_alert_email(new_jobs, company):
 
     msg = MIMEMultipart()
     msg["From"] = EMAIL_ADDRESS
-    msg["To"] = EMAIL_RECIPIENT
+    msg["To"] = EMAIL_RECIPIENT  # This can be a comma-separated list of emails
     msg["Subject"] = subject
 
     msg.attach(MIMEText(body, "plain"))
@@ -28,7 +28,9 @@ def send_job_alert_email(new_jobs, company):
         with smtplib.SMTP("smtp.gmail.com", 587) as server:
             server.starttls()
             server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-            server.sendmail(EMAIL_ADDRESS, EMAIL_RECIPIENT, msg.as_string())
-        print(f"📧 Email sent to {EMAIL_RECIPIENT}")
+            # Split the comma-separated list of emails into a list and send the email to all recipients
+            recipients = EMAIL_RECIPIENT.split(",")
+            server.sendmail(EMAIL_ADDRESS, recipients, msg.as_string())
+        print(f"📧 Email sent to {', '.join(recipients)}")
     except Exception as e:
         print(f"❌ Failed to send email: {e}")
