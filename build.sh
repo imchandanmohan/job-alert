@@ -4,4 +4,4 @@
 pip install -r requirements.txt
 
 # Install Playwright browser binaries (no root access needed)
-playwright install chromium
+python -m playwright install chromium
