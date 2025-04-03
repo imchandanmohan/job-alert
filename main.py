@@ -17,6 +17,7 @@ from scrapers.apple import fetch_jobs as fetch_apple_jobs
 from scrapers.nvidia import fetch_jobs as fetch_nvidia_jobs
 from scrapers.paypal import fetch_jobs as fetch_paypal_jobs
 from scrapers.uber import fetch_jobs as fetch_uber_jobs
+from scrapers.linkedin import fetch_linkedin_jobs
 
 SCRAPERS = [
     fetch_servicenow_jobs,
@@ -25,6 +26,22 @@ SCRAPERS = [
     fetch_nvidia_jobs,
     fetch_paypal_jobs,
     fetch_uber_jobs,
+    lambda: fetch_linkedin_jobs(
+        "https://www.linkedin.com/jobs/search?keywords=Software%20Engineer&location=San%20Jose&geoId=106233382&distance=50&f_TPR=r3600&position=1&pageNum=0", 
+        "linkedin_software_engineer"
+    ),
+     lambda: fetch_linkedin_jobs(
+        "https://www.linkedin.com/jobs/search?keywords=Full%20Stack&location=San%20Jose&geoId=106233382&distance=25&f_TPR=r3600&position=1&pageNum=0", 
+        "linkedin_full_stack"
+    ),
+    lambda: fetch_linkedin_jobs(
+        "https://www.linkedin.com/jobs/search?keywords=frontend&location=San%20Jose&geoId=106233382&distance=25&f_TPR=r3600&position=1&pageNum=0", 
+        "linkedin_frontend"
+    ),
+    lambda: fetch_linkedin_jobs(
+        "https://www.linkedin.com/jobs/search?keywords=mobile&location=San%20Jose&geoId=106233382&distance=25&f_TPR=r3600&position=1&pageNum=0", 
+        "linkedin_mobile"
+    ),
 ]
 
 def main():
