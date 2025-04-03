@@ -45,6 +45,7 @@ SCRAPERS = [
 ]
 
 def main():
+    ensure_playwright_browser_installed()
     for scraper in SCRAPERS:
         try:
             jobs = scraper()  # Run the scraper
