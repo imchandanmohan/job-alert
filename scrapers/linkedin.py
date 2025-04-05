@@ -1,5 +1,6 @@
 from playwright.sync_api import sync_playwright
 from utils import extract_company_from_url
+import time
 
 def fetch_linkedin_jobs(url: str, source: str):
     jobs = []
@@ -19,13 +20,29 @@ def fetch_linkedin_jobs(url: str, source: str):
         page = context.new_page()
 
         print(f"🌐 Navigating to {source} job search page...")
-
         page.goto(url, timeout=60000)
-
-        # Wait for the job list to be rendered
         page.wait_for_selector("ul.jobs-search__results-list", timeout=30000)
 
-        # Scraping the first page (handle pagination later)
+        # Get the job list container
+        container_selector = "ul.jobs-search__results-list"
+        previous_height = 0
+
+        while True:
+            page.evaluate(
+                f'document.querySelector("{container_selector}").scrollTo(0, document.querySelector("{container_selector}").scrollHeight)'
+            )
+            time.sleep(2)
+
+            current_height = page.evaluate(
+                f'document.querySelector("{container_selector}").scrollHeight'
+            )
+
+            if current_height == previous_height:
+                break  # No more jobs loading
+            previous_height = current_height
+
+        print("✅ Finished scrolling.")
+
         job_cards = page.query_selector_all("ul.jobs-search__results-list li")
 
         for card in job_cards:
@@ -35,23 +52,19 @@ def fetch_linkedin_jobs(url: str, source: str):
             date_el = card.query_selector(".job-search-card__listdate--new")
             job_url = card.query_selector("a.base-card__full-link")
 
-            # Check if job is via Dice and skip it if true
+            # Skip Dice postings
             dice_link = card.query_selector('a.hidden-nested-link')
             if dice_link and dice_link.inner_text().strip() == "Jobs via Dice":
-                continue  # Skip this job
+                continue
 
             if not (title_el and company_el and location_el and job_url):
                 continue
 
-            # Try to get 'data-entity-urn' from the card
             job_id_attr = card.query_selector("div.base-search-card").get_attribute("data-entity-urn")
+            if not job_id_attr:
+                continue
 
-            if job_id_attr:
-                # Extract the job ID after "jobPosting:"
-                job_id = job_id_attr.split(":")[-1]
-            else:
-                continue  # Skip job if there's no valid ID
-
+            job_id = job_id_attr.split(":")[-1]
             job_title = title_el.inner_text().strip()
             company_name = company_el.inner_text().strip()
             job_location = location_el.inner_text().strip()
@@ -65,7 +78,7 @@ def fetch_linkedin_jobs(url: str, source: str):
                 "location": job_location,
                 "posted_date": posted_date,
                 "url": job_details_url,
-                "source": source  # Set source dynamically
+                "source": source
             })
 
         browser.close()
