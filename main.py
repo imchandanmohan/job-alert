@@ -27,7 +27,7 @@ SCRAPERS = [
     # fetch_paypal_jobs,
     # fetch_uber_jobs,
     lambda: fetch_linkedin_jobs(
-        "https://www.linkedin.com/jobs/search/?currentJobId=4202324781&f_E=2%2C3&f_TPR=r86400&geoId=103644278&keywords=bigdata%20engineer&origin=JOB_SEARCH_PAGE_SEARCH_BUTTON&refresh=true", 
+        "https://www.linkedin.com/jobs/search?keywords=Software%20Engineer&location=San%20Jose&geoId=106233382&distance=50&f_TPR=r3600&position=1&pageNum=0", 
         "linkedin_Bigdata_engineer"
     )
 ]
