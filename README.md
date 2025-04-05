@@ -41,19 +41,22 @@ To run these queries:
 2. Open the SQL editor and paste the above queries.
 3. Click "Run" to execute the queries and create the tables.
 
-
-
 ### Running Locally
-1. Create a Python virtual environment.
-2. Create an `.env` file with the following key-value pairs:
+1. Create a Python virtual environment:
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
+    pip install -r requirements.txt
     ```
-SUPABASE_URL=urlfordb
-SUPABASE_KEY=keeyyy
-DB_PASSWORD=pass
-EMAIL_ADDRESS=sender-email@gmail.com
-EMAIL_PASSWORD=your app email password - https://support.google.com/mail/answer/185833?hl=en
-EMAIL_RECIPIENT=email@gmail.com,yashumohan02@gmail.com # defaults to sender
 
+2. Create an `.env` file with the following key-value pairs:
+    ```env
+    SUPABASE_URL=urlfordb
+    SUPABASE_KEY=keeyyy
+    DB_PASSWORD=pass
+    EMAIL_ADDRESS=sender-email@gmail.com
+    EMAIL_PASSWORD=your_app_email_password  # Refer: https://support.google.com/mail/answer/185833?hl=en
+    EMAIL_RECIPIENT=email@gmail.com,yashumohan02@gmail.com  # Defaults to sender
     ```
 
 ### Deploying on Render.com
