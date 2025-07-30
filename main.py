@@ -27,9 +27,55 @@ SCRAPERS = [
     # fetch_paypal_jobs,
     # fetch_uber_jobs,
     lambda: fetch_linkedin_jobs(
-        "https://www.linkedin.com/jobs/search?keywords=Software%20Engineer&location=San%20Jose&geoId=106233382&distance=50&f_TPR=r3600&position=1&pageNum=0", 
-        "linkedin_Bigdata_engineer"
+        "https://www.linkedin.com/jobs/search?keywords=MLOps&location=San%20Jose&geoId=106233382&distance=50&f_TPR=r3600&position=1&pageNum=0", 
+        "linkedin_MLOps_CA"
+    ),
+    lambda: fetch_linkedin_jobs(
+        "https://www.linkedin.com/jobs/search?keywords=Microsoft%20Power%20Apps&location=San%20Jose&geoId=106233382&distance=50&f_TPR=r3600&position=1&pageNum=0", 
+        "linkedin_Powerapps_CA"
+    ),
+    lambda: fetch_linkedin_jobs(
+        "https://www.linkedin.com/jobs/search?keywords=Software%20Engineer&location=San%20Jose&geoId=106233382&distance=50&f_TPR=r86400&position=1&pageNum=0", 
+        "linkedin_SoftwareEngineer_CA"
+    ),
+    lambda: fetch_linkedin_jobs(
+        "https://www.linkedin.com/jobs/search?keywords=MLOps&location=Washington%20DC-Baltimore%20Area&geoId=90000097&f_TPR=r3600&position=1&pageNum=0", 
+        "linkedin_MLOps_DC"
+    ),
+    lambda: fetch_linkedin_jobs(
+        "https://www.linkedin.com/jobs/search?keywords=Microsoft%20Power%20Apps&location=Washington%20DC-Baltimore%20Area&geoId=90000097&f_TPR=r3600&position=1&pageNum=0", 
+        "linkedin_Powerapps_DC"
+    ),
+    lambda: fetch_linkedin_jobs(
+        "https://www.linkedin.com/jobs/search?keywords=Software%20Engineer&location=Washington%20DC-Baltimore%20Area&geoId=90000097&f_TPR=r3600&position=1&pageNum=0", 
+        "linkedin_SoftwareEngineer_DC"
+    ),
+    lambda: fetch_linkedin_jobs(
+        "https://www.linkedin.com/jobs/search?keywords=MLOps&location=New%20York%20City%20Metropolitan%20Area&geoId=90000070&f_TPR=r3600&position=1&pageNum=0", 
+        "linkedin_MLOps_NY"
+    ),
+    lambda: fetch_linkedin_jobs(
+        "https://www.linkedin.com/jobs/search?keywords=Microsoft%20Power%20Apps&location=New%20York%20City%20Metropolitan%20Area&geoId=90000070&f_TPR=r3600&position=1&pageNum=0", 
+        "linkedin_Powerapps_NY"
+    ),
+    lambda: fetch_linkedin_jobs(
+        "https://www.linkedin.com/jobs/search?keywords=Software%20Engineer&location=New%20York%20City%20Metropolitan%20Area&geoId=90000070&f_TPR=r3600&position=1&pageNum=0", 
+        "linkedin_SoftwareEngineer_NY"
+    ),
+    lambda: fetch_linkedin_jobs(
+        "https://www.linkedin.com/jobs/search?keywords=MLOps&location=United%20States&geoId=103644278&f_TPR=r3600&position=1&pageNum=0", 
+        "linkedin_MLOps"
+    ),
+    lambda: fetch_linkedin_jobs(
+        "https://www.linkedin.com/jobs/search?keywords=Software%20Engineer&location=United%20States&geoId=103644278&f_TPR=r3600&position=1&pageNum=0", 
+        "linkedin_SoftwareEngineer"
+    ),
+    lambda: fetch_linkedin_jobs(
+        "https://www.linkedin.com/jobs/search?keywords=Powerapps&location=United%20States&geoId=103644278&f_TPR=r3600&position=1&pageNum=0", 
+        "linkedin_PowerApps"
     )
+
+
 ]
 
 def main():
