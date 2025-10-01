@@ -36,11 +36,13 @@ SCRAPERS = [
         "linkedin_SoftwareEngineer"
     ),
     lambda: fetch_linkedin_jobs(
-        "https://www.linkedin.com/jobs/search?keywords=Powerapps&location=United%20States&geoId=103644278&f_TPR=r3600&position=1&pageNum=0", 
-        "linkedin_PowerApps"
+        "https://www.linkedin.com/jobs/search?keywords=AI%20Engineer&location=United%20States&geoId=103644278&f_TPR=r3600&position=1&pageNum=0", 
+        "linkedin_AIEngineer"
+    ),
+    lambda: fetch_linkedin_jobs(
+        "https://www.linkedin.com/jobs/search?keywords=Machine%20Learning&location=United%20States&geoId=103644278&f_TPR=&f_PP=106413121&position=1&pageNum=0", 
+        "linkedin_ML_Arlington"
     )
-
-
 ]
 
 def main():
